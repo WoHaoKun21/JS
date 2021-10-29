@@ -80,6 +80,8 @@
                         case "xml":
                             data=xmlHttp.responseXML;
                             break;
+                        default:
+                            data=xmlHttp.responseText;
                     }
                     // 将获得到，并可能进行转换后的数据传送到成功后的回调函数里面
                     // 调用成功的回调函数

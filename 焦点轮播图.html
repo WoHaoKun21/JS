@@ -15,14 +15,25 @@
     <script src="js/public.js"></script>
     <script>
         $.addEvent(window,"load",function(){
-            var div1=document.getElementById("div1");
-            $.addEvent(div1,"click",function(){
-                alert("事件绑定成功");
+            var div1=$.getId("div1");
+            var bt1=$.getId("bt1");
+            $.addEvent(bt1,"click",function(){
+                // 执行ajax
+                $.ajax({
+                    url:"data.php",// 要发送到的目标地址
+                    type:"GET",// 发送的方法
+                    dataType:"html",// 返回的数据类型
+                    success:function(data){
+                        // 成功后的回调函数
+                        div1.innerText=data;
+                    }
+                })
             })
         })
     </script>
 </head>
 <body>
+    <input type="button" value="获取数据" id="bt1">
     <div id="div1"></div>
 </body>
 </html>
