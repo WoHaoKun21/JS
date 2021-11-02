@@ -10,11 +10,11 @@
     <div id="app"></div>
     <script src="https://unpkg.com/vue@next"></script>
     <script>
-        const why = {
+        const why = {// 创建一个块级变量
             template:"<h2>hellow word</h2>"
         };
-        const app = Vue.createApp(why);
-        app.mount("#app");
+        const app = Vue.createApp(why);// 将指定的对象赋值给app
+        app.mount("#app");// 获取DOM对象
     </script>
 </body>
 </html>
