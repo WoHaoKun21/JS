@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>无缝滚动</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+            list-style: none;
+            text-decoration: none;
+        }
+        div{
+            height: 98px;
+            width: 882px;
+            border: 1px solid #f00;
+            position: relative;
+            overflow: hidden;
+        }
+        div ul li{
+            width: 147px;
+            float: left;
+            position: absolute;
+        }
+    </style>
+    <script src="../JS/jquery-1.11.2.js"></script>
+    <script>
+        $(function(){
+            // 初始化图片位置
+            $("li").each(function(index,ele){
+                $(this).css("left",index*147+"px")
+            });
+            // 创建一个变量
+            var sid;
+            // 让图片开始进行移动
+            function move(){
+                sid = setInterval(()=>{
+                    // 每隔一段时间减少1像素
+                    $("li").css("left","-=1px");
+                    // 开始对图片位置进行限制
+                    if($("li:eq(5)").position().left <= -147){// 如果第六张图片的位置小于-147
+                        // 那么，将从第六张开始的图片全部初始化
+                        $("li:lt(6)").each(function(index,ele){// 对小于六的图片进行初始化
+                            $(this).css("left",(index*147)+882+"px");// 让当前图片的索引值乘以例宽度+盒子宽度
+                        })
+                    }
+                    if($("li:eq(11)").position().left <= -147){
+                        $("li:gt(5)").each(function(index,ele){
+                            $(this).css("left",(index*147)+882+"px");
+                        })
+                    }
+                },10);
+            }
+            move();// 调用函数
+            // 鼠标换入和划出事件
+            $("ul").mouseover(function(){
+                clearInterval(sid);
+            })
+            $("ul").mouseout(function(){
+                move();
+            })
+        })
+    </script>
+</head>
+<body>
+    <div>
+        <ul>
+            <li><img src="../img/01.jpg"></li>
+            <li><img src="../img/02.jpg"></li>
+            <li><img src="../img/03.jpg"></li>
+            <li><img src="../img/04.jpg"></li>
+            <li><img src="../img/05.jpg"></li>
+            <li><img src="../img/06.jpg"></li>
+            <li><img src="../img/01.jpg"></li>
+            <li><img src="../img/02.jpg"></li>
+            <li><img src="../img/03.jpg"></li>
+            <li><img src="../img/04.jpg"></li>
+            <li><img src="../img/05.jpg"></li>
+            <li><img src="../img/06.jpg"></li>
+        </ul>
+    </div>
+</body>
+</html>
