@@ -12,7 +12,7 @@
             background-color: #09f;
         }
     </style>
-    <script src="js/public.js"></script>
+    <script src="../JS/public.js"></script>
     <script>
         $.addEvent(window,"load",function(){
             var div1=$.getId("div1");
@@ -27,8 +27,8 @@
                         // 成功后的回调函数
                         div1.innerText=data;
                     }
-                })
-            })
+                });
+            });
         })
     </script>
 </head>
