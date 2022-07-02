@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+                                        JavaScript的重要性
+    一、JavaScript应用场景
+        1、Web开发
+            原生开发、React开发、Vue开发、Angular开发
+        2、移动端开发
+            ReactNative、Weex
+        3、小程序端开发
+            微信小程序、支付宝小程序、uniapp、taro
+        4、桌面应用开发
+            Electron：VSCode
+        5、后端开发
+            Node环境：express、koa、egg.js
+    二、JavaScript让热迷惑的知识点
+        1、作用域：作用于的理解、作用域的提升、块级作用域、作用领域、AO、GO、VO等概念
+        2、函数、闭包：闭包的访问规则，闭包的内存泄漏，函数中this的指向
+        3、面向对象：JavaScript面向对象、继承、原型、原型链等
+        4、ES新特性：ES6、7、8、9、10、11、12新特性
+        5、其他一系列知识：事件循环、微任务、宏任务、内存管理、Promise、await、async、防抖、节流等等
+      注：TypeScript是JavaScript的一个超级，在js的基础上进行了扩展，最终还是需要转换为js进行运行的，所以ts无法替代js
+    三、Javascript是一门编程语言
+        1、事实上我们可以使用更准确地描述——JS是一门高级的编程语言
+        2、有高级编程语言就有低级编程语言，从编程语言发展历史来说，分为三个阶段：
+            ①：机器语言：1000100111011000，一些机器指令；
+            ②：汇编语言：mov ax、bx，一些汇编指令——对计算机进行简单操作；
+            ③：高级语言：C++、Java、JavaScript、Python——又分为编译性语言和解释型语言；
+        3、高级语言更加接近人类语言，但是计算机并不认识这些高级语言，最后还是需要转换为机器指令
+
+                                    浏览器的下载和渲染过程
+    一、浏览器的工作原理：JS代码在浏览器中是如何被执行的
+        1、下载流程：
+            ①：先在浏览器的到导航栏输入域名，进过DNS(进行域名解析的)解析，最后转换为一个ip地址(服务器地址)
+            ②：服务器会返回我们index.html网页
+            ③：浏览器开始解析这个网页，遇到CSS、script标签(JS)会去服务器把对应的文件下载下来并进行 执行
+        2、渲染流程：
+            ④：浏览器内核的HTML Parser将我们的html转换为对应的DOM树，CSS Parser将我们的CSS生成样式规则，最后DOM树和样式规则会附加到一起，生成一颗渲染树
+            ⑤：浏览器的Layout(布局引擎)会将渲染树在浏览器进行布局
+            ⑥：最后显示在浏览器的页面
+    二、浏览器内核：帮助我们进行解析
+        1、浏览器内核：
+            ①：Gecko：早期被Netscape和Mozilla、Firefox浏览器使用；
+            ②：Trident：微软开发，被IE4-11浏览器进行使用，但是Edge浏览器已经转向Blink；
+            ③：Webkit：苹果基于KHTML开发、开源的，用于Safari、Google Chrome之前也在使用；
+            ④：Blink：是Webkti的一个分支，Google开发，目前应用于Google Chrome、Edge、Opera等；
+        2、浏览器内核指的就是浏览器的排版引擎：
+            排版引擎(layout engine)，也被称为浏览器引擎(browser engine)、页面引擎(rendering engine)或样板引擎
+
+                                    JavaScript引擎：页面渲染过程中的js文件由谁来进行执行呢？
+    一、为什么需要JavaScript引擎：
+        1、因为高级的编程语言都是需要转换成最终的机器指令来执行的；
+        2、我们编写的js无论是给浏览器或者Node执行，最后都是有CPU进行处理的；
+        3、CPU只认识自己的指令集，也就是机器语言，最后才能被CPU进行执行；
+        4、JavaScript引擎帮助我们将js代码翻译成了CPU指令(机器语言)来执行；
+        
+
+
+
+
+
+
+</body>
+
+</html>
