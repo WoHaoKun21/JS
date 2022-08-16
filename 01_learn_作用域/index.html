@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 1、代码编译 -->
+    <!-- <script src="./01_测试代码.js"></script> -->
+    <!-- 2、JavaScript代码执行过程 -->
+    <!-- <script src="./02_全局代码执行顺序.js"></script> -->
+    <!-- 3、全局代码执行过程 -->
+    <!-- <script src="./03_全局代码执行过程.js"></script> -->
+    <script>
+        const dataArr = [1, 2, 3, 4, 5, 6, 7];
+        const resort = (arr) => {
+            let newArr = [];
+            for (let i = 0; i <= arr.length; i++) {
+                for (let j = 0; j <= arr.length; j++) {
+                    newArr.push(arr.shift());
+                    newArr.push(arr.pop());
+                    if (arr.length === 1) {
+                        newArr.push(arr.pop());
+                    }
+                }
+                return newArr;
+            }
+        }
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

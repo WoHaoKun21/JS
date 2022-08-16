@@ -61,8 +61,42 @@
         2、我们编写的js无论是给浏览器或者Node执行，最后都是有CPU进行处理的；
         3、CPU只认识自己的指令集，也就是机器语言，最后才能被CPU进行执行；
         4、JavaScript引擎帮助我们将js代码翻译成了CPU指令(机器语言)来执行；
-        
+    二、常见的JS引擎：
+        1、SpiderMonkey：第一款JS引擎，有Brendan Eich开发(js作者)；
+        2、Chakra：微软开发，用于IE浏览器；
+        3、JavaScriptCore：WebKit中的JS引擎，Apple公司开发；
+        4、V8：Google开发的强大JS引擎，帮助Chrome从众多浏览器中脱颖而出
+    三、浏览器内核和JS引擎的关系
+        以WebKit为例，WebKit由两部分组成：
+            ①：WebCore：负责HTML解析、布局、渲染等相关工作；
+            ②：JavaScriptCore：解析、执行JavaScript代码；
 
+                                    理解V8引擎执行JavaScript代码的过程
+    一、定义：
+        1、V8引擎使用C++编写的Google开源高性能的JS和WebAssembly引擎，它用于Chrome和Node.js等；
+        2、它实现ECMAScript和WebAssembly，并在Win7或更高版本，macOS 10.12+和使用x64、IA-32，ARM或MIPS处理的Linux系统上运行；
+        3、V8可以独立运行，也可以嵌入到任何C++应用程序中；
+    二、架构：V8引擎本身的源码非常复杂，大概超过100W行C++代码，通过了解它的架构，我们可以直到是如何对JavaScript执行的；
+        1、Parse模块会将JavaScript代码转换为AST(抽象语法树)，这是因为解释器并不直接认识JavaScript代码；
+            ①：如果函数没有被调用，那么不会被转换成AST的；
+            ②：Parse的V8官方文档：https://v8.dev/blog/scanner
+        2、Ignition是一个解释器，会将AST转换成ByteCode(字节码)
+            ①：如果同时收集TurboFan优化所需要的信息(比如函数参数类型信息，有了类型才能进行真是的运算)；
+            ②：如果函数只调用一次，Ignition会执行解释ByteCode；
+            ③：Ignition的V8官方文档：https://v8.dev/blog/ignition-interpreter;
+        3、TurboFan是一个编译器，可以将字节码编译为CPU可以直接执行的机器码；
+            ①：如果一个函数多次调用，name就会被标记为热点函数，那么经过TurboFan转换成优化的机器码，提高代码的执行性能；
+            ②：机器码实际上也会被还原为ByteCode，这是因为如果后续执行函数的过程中，类型发生了改变，之前优化的机器码并不能正确的处理运算，就会逆向的转换字节码；
+            ③：TurboFan的V8官方文档：http://v8.dev/blog/turbofan-jit
+    三、解析过程：JavaScript是如何被进行解析的呢？
+        1、Blink将源码交个v8引擎，Stream获取到源码并进行编码转换；
+        2、Scanner会进行词法分析(lexical analysis)，词法分析会将代码转换成tokens；
+        3、接下来tokens会被转换成AST树，经过Parser和preParser：
+            ①：Parser就是直接将token转换为AST树结构
+            ②：PreParser称之为预解析，为什么呢？
+                （1）并不是所有的js代码在一开始就会被执行，对所有jsdiamante进行解析必然会影响网页运行效率
+                （2）v8引擎实现了Lazy Parsing(延迟解析)方案，它的作用就是将不必要的函数进行预解析，直接洗暂时需要的内容，而对函数的全量解析是在函数被调用时才会进行；
+                （3）比如：定义函数a，a的内部定义另外一个函数b，调用a函数，那么b函数就会被预解析，而a函数则不会；
 
 
 
