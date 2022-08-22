@@ -1,4 +1,4 @@
-// 闭包内存泄漏案例
+// 闭包内存泄漏案例——————配合浏览器进行测试
 function createFnArray() {
   // 数组占据空间计算：4 * 1024 * 1024 = 4M；4表示一个number类型占据的空间
   var arr = new Array(1024 * 1024).fill(1); // 创建一个4M的数组，并使用fill：方法把数组里的内容进行填充——填充的是数字1
@@ -12,5 +12,15 @@ function createFnArray() {
 
 var arrayFns = [];
 for (var i = 0; i < 100; i++) {
-  arrayFns.push(createFnArray()); // 调用一百次函数，将函数的返回值存储到创建的数组中
+  setTimeout(function () {
+    arrayFns.push(createFnArray()); // 调用一百次函数，将函数的返回值存储到创建的数组中
+  }, i * 100);
 }
+
+setTimeout(function () {
+  for (var i = 0; i < 50; i++) {
+    setTimeout(function () {
+      arrayFns.pop();
+    }, i * 100);
+  }
+}, 10000);

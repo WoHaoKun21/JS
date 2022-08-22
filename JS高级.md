@@ -148,7 +148,27 @@
 
 ​		2、闭包函数在使用一次后不再使用的话，会一直存在内存中进行占用，导致内存的浪费和数据泄露
 
-​			* 将不再使用的闭包函数赋值为null即可被垃圾回收器进行销毁处理
+​				*   将不再使用的闭包函数赋值为null即可被垃圾回收器进行销毁处理
+
+​		3、浏览器如何查看内存是否进行了回收或使用![image-20220822143101003](C:\Users\60991\AppData\Roaming\Typora\typora-user-images\image-20220822143101003.png)
+
+​		4、查看闭包函数的父环境（）![image-20220822145242951](C:\Users\60991\AppData\Roaming\Typora\typora-user-images\image-20220822145242951.png)
+
+
+
+<p style="text-align:center;font-size:24px;font-weight: 1000">JS函数的this指向</p>
+
+<p style="font-weight:600">一、为什么需要this</p>
+
+​		1、在常见的编程语言中，几乎都有this这个关键字，但是JavaScript中的this和常见的面向对象语言中的this不太一样：
+
+​			（1）常见面向对象的编程语言中，如Java、C++、Swift、Dart等等一系列语言中，this通常只会出现在类的方法中
+
+​			（2）需要一个类，类中的方法（new 一个实例）中，this代表的是当前调用对象；
+
+​			（3）JavaScript中的this更加灵活，无论是他出现的位置还是他代表的含义。
+
+
 
 
 
