@@ -156,7 +156,7 @@
 
 
 
-<p style="text-align:center;font-size:24px;font-weight: 1000">JS函数的this指向</p>
+<p style="text-align:center;font-size:24px;font-weight: 1000">JS函数的this</p>
 
 <p style="font-weight:600">一、为什么需要this</p>
 
@@ -188,29 +188,29 @@
 
 ​				<font color="#f00">发现：</font>函数在调用时，js会默认给this绑定一个值；this的绑定和函数定义的位置没有关系；this的绑定和						    调用方式及调用位置有关系；this是在运行时被绑定的
 
-​		4、this的绑定规则
+<p style="font-weight:600">三、this的绑定规则？</p>
 
-​			（1）默认绑定：函数独立调用时——函数没有绑定到某个对象上进行调用
+​		1、默认绑定：函数独立调用时——函数没有绑定到某个对象上进行调用
 
-​			（2）隐式绑定：他的调用位置中，是通过某个对象发起的函数调用
+​		2、隐式绑定：他的调用位置中，是通过某个对象发起的函数调用
 
-​			（3）显示绑定：
+​		3、显示绑定：
 
-​						前提条件：①必须在调用的对象内部有一个对函数的引用（比如一个属性）；
+​					前提条件：①必须在调用的对象内部有一个对函数的引用（比如一个属性）；
 
-​										   ②如果没有这样的引用，在进行调用时，会找不到该函数的错误；
+​									   ②如果没有这样的引用，在进行调用时，会找不到该函数的错误；
 
-​										   ③正是通过这个引用，间接地将this绑定到了这个对象上；
+​									   ③正是通过这个引用，间接地将this绑定到了这个对象上；
 
-​						如果我们不希望再对象内部包含这个函数的引用，同时又希望在这个对象上强制调用，怎么做？
+​					如果我们不希望再对象内部包含这个函数的引用，同时又希望在这个对象上强制调用，怎么做？
 
-​											① js所有的函数都可以使用call和apply方法（这个和Prototype有关）-参数：apply为数												组，call和bind为参数列表
+​										① js所有的函数都可以使用call和apply方法（这个和Prototype有关）-参数：apply为数											组，call和bind为参数列表
 
-​											② 这两个函数的第一个参数都要求是一个对象，的这个对象是为this准备的
+​										② 这两个函数的第一个参数都要求是一个对象，的这个对象是为this准备的
 
-​											③ 在调用这个函数时，会将this绑定到这个传入的对象上
+​										③ 在调用这个函数时，会将this绑定到这个传入的对象上
 
-​			（4）new绑定：js中的函数可以当作一个类的构造函数来使用，也就是使用new关键字
+​		4、new绑定：js中的函数可以当作一个类的构造函数来使用，也就是使用new关键字
 
 ​						使用new关键字调用函数时执行的操作：
 
@@ -221,3 +221,47 @@
 ​									③ 这个新对象会绑定到函数调用的this上（this的绑定就是在这一步完成）
 
 ​									④ 如果函数没有返回其他对象，表达式就会返回这个新对象
+
+<p style="font-weight:600">四、this绑定规则优先级——如果一个函数调用应用了多条规则，会进行优先级选择</p>
+
+​		1、默认规则的优先级最低
+
+​				<font color="#f00">原因：</font>因为存在其他规则时，就会通过其它规则的方式来绑定this
+
+​		2、显示绑定优先级高于隐式绑定
+
+​				<font color="#f00">案例：</font><img src="C:\Users\60991\AppData\Roaming\Typora\typora-user-images\image-20220826111115121.png" alt="image-20220826111115121" style="zoom:50%;" />	
+
+​		3、new绑定优先级高于隐式绑定
+
+​				<font color="#f00">案例：</font><img src="C:\Users\60991\AppData\Roaming\Typora\typora-user-images\image-20220826135048812.png" alt="image-20220826135048812" style="zoom: 67%;" />	
+
+​		4、new绑定规则优先级高于显示绑定规则
+
+​				<font color="#f00">案例：</font><img src="C:\Users\60991\AppData\Roaming\Typora\typora-user-images\image-20220826135854186.png" alt="image-20220826135854186" style="zoom:50%;" />	
+
+​			<font color="#f00" size="4">整理：</font><span style="text-decoration: underline;color:#09f">new绑定 > 显示绑定(apply/call/bind) > 隐式绑定 (obj.foo()) > 默认绑定(函数独立调用)；显示绑定规则中，bind的优先级最高！</span>
+
+<p style="font-weight:600">五、this绑定规则之外——this的绑定规则已经足够开发使用，但是有一些语法超出了规则之外</p>
+
+​		1、忽略显示绑定
+
+​				** 当bind/apply/call传入的参数为undefined/null的时候，它的this指向window对象
+
+​		2、间接函数引用——这种情况使用的实质上是默认绑定规则
+
+​				**<img src="C:\Users\60991\AppData\Roaming\Typora\typora-user-images\image-20220826143932326.png" alt="image-20220826143932326" style="zoom:50%;" />	
+
+​			**提示：**()的意思是，把小括号里面的代码当作一个整体
+
+<p style="font-weight:600">五、this绑定规则之外——箭头函数(arrow function)</p>
+
+​		**特点：**		
+
+​			（1）ES6之后新增的一种编写函数的方法，书写比函数表达式更加简洁；
+
+​			（2）箭头函数不会绑定this、arguments属性
+
+​			（3）箭头函数也不能作为狗函数来使用——不能使用new关键字
+
+​		**编写：**由**() 参数**、**=> 箭头**、**{}函数体**三部分组成，参数只有一个的时候，**小括号可以省略**，当函数体里面**只有一句代码的时候大括号也可以省略**，当函数体返回值是大括号对象时需要使用小括号包裹起来，表示大括号对象时一个整体
