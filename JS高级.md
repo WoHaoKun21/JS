@@ -1,6 +1,8 @@
 
 
 <h1 align="center">JS高级<h1>
+<p style="text-align:center;font-size:24px;font-weight: 1000">一、JS执行</p>
+
 
 1. **代码执行过程**
 
@@ -28,7 +30,8 @@
 
    
 
-   <p style="text-align:center;font-size:24px;font-weight: 1000">JS的内存管理<p>
+   <p style="text-align:center;font-size:24px;font-weight: 1000">二、JS的内存管理<p>
+
 
    一、认识内存管理：不管是什么样的编程语言，在代码执行过程中都是需要给他分配内存的，不同的是某些编程语言需要我们自己手动的管理内存，某些编程语言会可以自动帮助我们管理内存；
 
@@ -98,7 +101,7 @@
 
    
 
-   <p style="text-align:center;font-size:24px;font-weight: 1000">JS的闭包</p>
+   <p style="text-align:center;font-size:24px;font-weight: 1000">三、JS的闭包</p>
 
 <p style="font-weight:600">一、JS中函数是一等公民</p>
 
@@ -158,7 +161,7 @@
 
 
 
-<p style="text-align:center;font-size:24px;font-weight: 1000">JS函数的this</p>
+<p style="text-align:center;font-size:24px;font-weight: 1000">四、JS函数的this</p>
 
 <p style="font-weight:600">一、为什么需要this</p>
 
@@ -270,8 +273,50 @@
 
 ​		
 
-<p style="text-align:center;font-size:24px;font-weight: 1000">JS实现apply/call/bind</p>
+<p style="text-align:center;font-size:24px;font-weight: 1000">五、JS实现apply/call/bind和认识arguments</p>
 
 <p style="font-weight:600">一、实现apply/call/bind</p>
 
-​		
+​		1、apply：08_apply-call-bind的实现/03_apply函数的实现.js
+
+​					<img src="C:\Users\60991\AppData\Roaming\Typora\typora-user-images\image-20220831135612234.png" alt="image-20220831135612234" style="zoom:50%;" />	
+
+​		2、call：08_apply-call-bind的实现/01_call函数的实现.js
+
+​					<img src="C:\Users\60991\AppData\Roaming\Typora\typora-user-images\image-20220831135653175.png" alt="image-20220831135653175" style="zoom:50%;" />		
+
+​		3、bind：08_apply-call-bind的实现/04_bind函数的实现.js
+
+​					<img src="C:\Users\60991\AppData\Roaming\Typora\typora-user-images\image-20220831135727356.png" alt="image-20220831135727356" style="zoom:50%;" />	
+
+<p style="font-weight:600">二、认识arguments</p>
+
+​		**1、介绍：**是一个对应于**<span style="color:#f00">传递给函数的参数</span>**的**<span style="color:#f00">类数组(array-like)对象</span>**。
+
+​		**2、类数组：**array-like意味着它不是一个数组类型，而是一个对象类型：
+
+​			（1）相同点：拥有数组的一些特征，如：length，使用index索引来进行访问；
+
+​			（2）不同点：没有数组的一些方法，如：forEach、map等
+
+​		**3、arguments转数组的方式**：
+
+​								<img src="C:\Users\60991\AppData\Roaming\Typora\typora-user-images\image-20220831150215032.png" alt="image-20220831150215032" style="zoom:50%;" />			
+
+​		**4、箭头函数中不存在arguments的**
+
+​			（1）替代：使用拓展运算符进行替代
+
+​			（2）在箭头函数中打印arguments，它会向上级去寻找
+
+​					** 在浏览器中全局作用域是没有arguments的，除非箭头函数的上级是function函数
+
+​					** 在node中全局作用域是有arguments的
+
+
+
+<p style="text-align:center;font-size:24px;font-weight: 1000">六、纯函数及函数柯里化实现</p>
+
+<p style="font-weight:600">一、认识纯函数</p>
+
+​		1、
