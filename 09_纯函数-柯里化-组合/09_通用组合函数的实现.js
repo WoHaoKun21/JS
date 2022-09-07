@@ -1,3 +1,4 @@
+// 封装实现组合函数
 function hyCompose(...fns) {
   var length = fns.length;
   for (var i = 0; i < length; i++) {
